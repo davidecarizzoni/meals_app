@@ -11,7 +11,7 @@ final theme = ThemeData(
   textTheme: GoogleFonts.latoTextTheme(),
 );
 
-void main() {
+void main() { 
   runApp(const App());
 } 
 

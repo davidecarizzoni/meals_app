@@ -38,16 +38,21 @@ class MealsScreen extends StatelessWidget {
 
     if (meals.isNotEmpty) {
       content = ListView.builder(
+        itemCount: meals.length,
         itemBuilder: (ctx, index) => Text(
           meals[index].title,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
         ),
       );
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: content);
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: content,
+    );
   }
 }

@@ -30,7 +30,6 @@ class _TabsScreenState extends State<TabsScreen> {
 
     if (_selectedPageIndex == 1) {
       selectedPage = const MealsScreen(
-        title: 'favorites',
         meals: [],
       );
       selectedPageTitle = 'Your Favorite';

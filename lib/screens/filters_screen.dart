@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/screens/tabs.dart';
-import 'package:meals_app/widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({
@@ -21,17 +19,17 @@ class _FiltersScreenState extends State<FiltersScreen> {
       appBar: AppBar(
         title: const Text('Widget'),
       ),
-      drawer: MainDrawer(
-        onSelectString: (identifier) {
-          if (identifier == 'meals') {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (ctx) => const TabsScreen(),
-              ),
-            );
-          }
-        },
-      ),
+      // drawer: MainDrawer(
+      //   onSelectString: (identifier) {
+      //     if (identifier == 'meals') {
+      //       Navigator.of(context).push(
+      //         MaterialPageRoute(
+      //           builder: (ctx) => const TabsScreen(),
+      //         ),
+      //       );
+      //     }
+      //   },
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [

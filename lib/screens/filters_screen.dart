@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+enum Filter { glutenFree, lactoseFree }
+
 class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({
-    super.key,
-  });
+  const FiltersScreen({super.key, required this.currentFilters});
+
+  final Map<Filter, bool> currentFilters;
 
   @override
   State<FiltersScreen> createState() {
@@ -14,6 +16,14 @@ class FiltersScreen extends StatefulWidget {
 class _FiltersScreenState extends State<FiltersScreen> {
   bool _isGlutenFree = false;
   bool _isLactoseFree = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isGlutenFree = widget.currentFilters[Filter.glutenFree]!;
+    _isLactoseFree = widget.currentFilters[Filter.lactoseFree]!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +41,14 @@ class _FiltersScreenState extends State<FiltersScreen> {
       //     }
       //   },
       // ),
-      body: SingleChildScrollView(
+      body: WillPopScope(
+        onWillPop: () async {
+          Navigator.of(context).pop({
+            Filter.glutenFree: _isGlutenFree,
+            Filter.lactoseFree: _isLactoseFree
+          });
+          return false; // don't want to pop twice
+        },
         child: Column(
           children: [
             SwitchListTile(

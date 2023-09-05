@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meals_app/screens/tabs.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:meals/screens/tabs.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -13,7 +14,12 @@ final theme = ThemeData(
 );
 
 void main() {
-  runApp(const App());
+  runApp(
+    const ProviderScope(
+      //widget provided by river pod library to use providers in app, like redux
+      child: App(),
+    ),
+  );
 }
 
 class App extends StatelessWidget {

@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/models/meal.dart';
-import 'package:meals_app/screens/meal_detail.dart';
-import 'package:meals_app/widgets/meal_item.dart';
+
+import 'package:meals/models/meal.dart';
+import 'package:meals/screens/meal_details.dart';
+import 'package:meals/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
     super.key,
     this.title,
     required this.meals,
-    required this.onToggleFavorite,
   });
 
-  final void Function(Meal meal) onToggleFavorite;
   final String? title;
   final List<Meal> meals;
 
-  void _onTabMeal(BuildContext context, Meal meal) {
+  void selectMeal(BuildContext context, Meal meal) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (ctx) => MealDetailScreen(
+        builder: (ctx) => MealDetailsScreen(
           meal: meal,
-          onToggleFavorite: onToggleFavorite,
         ),
       ),
     );
@@ -33,20 +31,18 @@ class MealsScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Nothig here',
+            'Uh oh ... nothing here!',
             style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
           ),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Text(
-            'Try selecting a different category',
+            'Try selecting a different category!',
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
-          )
+          ),
         ],
       ),
     );
@@ -57,7 +53,7 @@ class MealsScreen extends StatelessWidget {
         itemBuilder: (ctx, index) => MealItem(
           meal: meals[index],
           onSelectMeal: (meal) {
-            _onTabMeal(context, meal);
+            selectMeal(context, meal);
           },
         ),
       );
